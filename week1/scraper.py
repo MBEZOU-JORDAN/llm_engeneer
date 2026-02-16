@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+from urllib.parse import urljoin
 import requests
 
 # Standard headers to fetch a website
@@ -15,3 +16,27 @@ def fetch_website_contents(url):
         
     text = soup.body.get_text(separator="\n", strip=True) 
     return title + "\n\n" + text
+
+from bs4 import BeautifulSoup
+import requests
+from urllib.parse import urljoin # <--- 1. On importe cet outil
+
+# ... (le reste du code ne change pas)
+
+def fetch_website_links(url):
+    response = requests.get(url, headers=header)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    
+    clean_links = []
+    
+    # 2. On parcourt toutes les balises <a>
+    for link in soup.find_all("a"):
+        href = link.get("href")
+        
+        if href: # Si le lien n'est pas vide
+            # 3. C'est ici que la magie opère : on recolle le morceau au domaine principal
+            full_url = urljoin(url, href)
+            clean_links.append(full_url)
+            
+    # 4. On utilise set() pour supprimer les doublons (optionnel mais propre)
+    return list(set(clean_links))

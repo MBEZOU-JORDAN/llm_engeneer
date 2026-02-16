@@ -13,4 +13,6 @@ dependencies = [
     "openai>=2.21.0",
     "python-dotenv>=1.2.1",
     "requests>=2.32.5",
+    "rich>=14.3.2",
+    "tiktoken>=0.12.0",
 ]
