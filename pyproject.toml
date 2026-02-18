@@ -5,9 +5,11 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "anthropic>=0.79.0",
     "beautifulsoup4>=4.14.3",
     "google-genai>=1.63.0",
     "google-generativeai>=0.8.6",
+    "gradio>=6.6.0",
     "ipywidgets>=8.1.8",
     "ollama>=0.6.1",
     "openai>=2.21.0",
